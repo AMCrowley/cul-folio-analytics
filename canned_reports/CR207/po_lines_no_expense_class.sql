@@ -14,7 +14,7 @@ ppo.order_type AS order_type,
 order_format AS order_format,
 title_or_package AS title_or_package
 
-FROM po_linesAS pol
+FROM po_lines AS pol
 CROSS JOIN json_array_elements(json_extract_path(data, 'fundDistribution')) AS dist(data)
 LEFT JOIN finance_expense_classes AS fec ON json_extract_path_text(dist.DATA, 'expenseClassId') =fec.id
 LEFT JOIN finance_funds AS ff ON ff.id = json_extract_path_text(dist.data, 'fundId')
